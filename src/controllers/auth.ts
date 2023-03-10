@@ -3,7 +3,7 @@ import { hashPassword, createToken, compare } from '../utils/utils'
 import { Response,Request, } from 'express';
 import dotenv from "dotenv"
 import * as userService from "../services/user.service"
-import config from '../config';
+import config from '../config/config';
 
 
 const secret =  config.sessionSecet

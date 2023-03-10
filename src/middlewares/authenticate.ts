@@ -1,6 +1,6 @@
 import { checkToken, verifyToken } from '../utils/toolbox'
 import { Request,Response,NextFunction } from 'express';
-import config from '../config';
+import config from '../config/config';
 
 
 

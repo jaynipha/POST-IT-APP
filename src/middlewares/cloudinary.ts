@@ -1,5 +1,5 @@
 import cloudinary from "cloudinary"
-import config from "../config";
+import config from "../config/config";
 const cloud = cloudinary.v2;
 
 
