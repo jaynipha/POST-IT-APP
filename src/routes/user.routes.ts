@@ -1,8 +1,10 @@
 import express, { Router } from "express"
+import { createUser, login } from "../controllers/Usercontroller"
+
 const router: Router = express.Router();
-import { authenticate } from "../middlewares/authenticate";
-import *  as User from "../controllers/Usercontroller"
 
+router.post('/', createUser)
+router.post('/login', login)
 
+export default router;
 
-router.post('/api/v1/create/users',User.createUser)

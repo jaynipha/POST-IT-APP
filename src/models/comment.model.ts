@@ -20,7 +20,7 @@ const commentSchema = new Schema<CommentSchemaType>(
 		},
 		text: {
 			type: String,
-			required: [true, 'roomType must be a valid ObjectId'],
+			required: [true, 'reply must be a valid ObjectId'],
 		},
 		media: {
 			type: [],
