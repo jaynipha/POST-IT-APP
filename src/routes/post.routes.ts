@@ -6,7 +6,7 @@ import {authenticate} from "../middlewares/authenticate"
 
 
 router.post('/',authenticate, createPost)
-router.put('/:id',authenticate, deletePostWithId)
+router.delete('/:id',authenticate, deletePostWithId)
 router.post('/:postId/comments',authenticate, createComment)
 router.get('/:postId/comments',authenticate, getPostComments)
 router.get('/:postId/comments/:id',authenticate, getOnePostComment)
