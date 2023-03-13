@@ -30,9 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', routes);
 
 app.get('/', (request: Request,
-	response: Response,) => response.status(200).send({
-		message: 'Welcome to POST-API',
-	}));
+	response: Response,) => response.redirect("https://documenter.getpostman.com/view/21748378/2s93Jut37z"))
 
 const production = process.env.NODE_ENV === 'production';
 

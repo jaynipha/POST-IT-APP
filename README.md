@@ -52,7 +52,7 @@ you don't need the bearer token for sign up and login.
 
 ### LINK TO POSTMAN DOCUMENTATION
 
-https://www.postman.com/martian-satellite-456617/workspace/post-it/collection/21748378-cfb78c31-6932-4467-aa70-97c836b4287e?action=share&creator=21748378
+https://documenter.getpostman.com/view/21748378/2s93Jut37z
 
 ```
 
@@ -69,7 +69,8 @@ https://dbdesigner.page.link/z9mHzW1Gzsgy2hUx9
 
 ```
 WHAT I DID WITH MY DELETED DOCUMENTS FROM THE DATABASE
-the deleted documents are still stored in the database, this is to keep track of important customer data that can be used to  and will be stored for a period of 5 years before they are permanently deleted. This is because of the privacy laws that govern social media and othe
+the deleted documents are still stored in the database, this is to keep track of important customer data that can be used to make informed marketing decisions later(targeted ads and its likes)
+it will be stored for a period of at least 5 years before they are permanently deleted. This is because of the privacy laws that govern social media all over the world
 ```
 
 ### CREATE USER
