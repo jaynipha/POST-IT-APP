@@ -1,36 +1,20 @@
-// import { Response,Request } from "express";
-// import { omit } from "lodash";
-
-// import * as userService from "../services/user.service"
-
-// export  async function createUser (req: Request, res: Response)  {
-  
-    
-//   try {
-//     const newUser = await userService.createUser(req.body)
-//     return res.status(200).json(omit(newUser.toJSON(),["password","createdAt"]))
-
-//     } catch (error) {
-//       return res.status(500).json({ success: false, message: error });
-//     }
-  
-// };
-
-// export async function updateUser(req: Request, res: Response) {
-  
-//   try {
-//      await userService.updateUser({ _id: req.params }, req.body)
-//     return res.sendStatus(200)
-//   } catch (error) {
-//       return res.status(500).json({ success: false, message: error });
-
-//   }
-
-// }
 import { Response, Request, NextFunction } from "express";
-import { createUserService, signIn } from "../services/user.service"
+import {
+  getAllUserPosts,
+  signInService,
+  createUserService,
+  deleteUserService,
+  getAllUsersService,
+  findByIdUserService,
+  updateReplaceUserService,
+  getUserSpecificPostService,
+  getUserPostCommentsService,
+  getUserSpecificPostCommentService
+} from "../services/user.service"
 
-export async function createUser(req: Request, res: Response, next: NextFunction) {  
+
+
+export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
     const { data, token } = await createUserService(req.body);
     return res.status(201).send({ status: true, data, token });
@@ -40,9 +24,9 @@ export async function createUser(req: Request, res: Response, next: NextFunction
   }
 };
 
-export async function login(req: Request, res: Response, next: NextFunction) {  
+export async function login(req: Request, res: Response, next: NextFunction) {
   try {
-    const { data, token } = await signIn(req.body);
+    const { data, token } = await signInService(req.body);
     return res.status(200).send({ status: true, data, token });
 
   } catch (error) {
@@ -50,16 +34,84 @@ export async function login(req: Request, res: Response, next: NextFunction) {
   }
 };
 
-// export async function updateUser(req: Request, res: Response) {
+export async function getUserById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const userId = req.params.id
+    const { data } = await findByIdUserService(userId);
+    return res.status(200).send({ status: true, data });
 
-//   try {
-//     await userService.updateUser({ _id: req.params }, req.body)
-//     return res.sendStatus(200)
-//   } catch (error) {
-//     return res.status(500).json({ success: false, message: error });
+  } catch (error) {
+    next(error)
+  }
+};
 
-//   }
+export async function getUsers(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await getAllUsersService();
+    return res.status(200).send({ status: true, data });
 
-// }
+  } catch (error) {
+    next(error)
+  }
+};
+
+export async function updateUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await updateReplaceUserService(req.params.id, req.body);
+    return res.status(200).send({ status: true, data });
+
+  } catch (error) {
+    next(error)
+  }
+};
+
+export async function deleteUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await deleteUserService(req.params.id);
+    return res.status(200).send({ status: true, data });
+
+  } catch (error) {
+    next(error)
+  }
+};
+
+export async function fetchAllUserSpecificPosts(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await getAllUserPosts(req.params.userId);
+    return res.status(200).send({ status: true, data });
+
+  } catch (error) {
+    next(error)
+  }
+};
 
 
+export async function getUserSpecificPost(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await getUserSpecificPostService(req.params.userId, req.params.postId);
+    return res.status(200).send({ status: true, data });
+
+  } catch (error) {
+    next(error)
+  }
+};
+
+export async function getUserSpecificPostComments(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await getUserPostCommentsService(req.params.userId, req.params.postId);
+    return res.status(200).send({ status: true, data });
+
+  } catch (error) {
+    next(error)
+  }
+};
+
+export async function getUserSpecificPostComment(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { data } = await getUserSpecificPostCommentService(req.params.userId, req.params.postId, req.params.id);
+    return res.status(200).send({ status: true, data });
+
+  } catch (error) {
+    next(error)
+  }
+};

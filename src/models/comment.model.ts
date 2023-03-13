@@ -13,10 +13,12 @@ const commentSchema = new Schema<CommentSchemaType>(
 		userId: {
 			type: Schema.Types.ObjectId,
 			required: [true, 'User ID is required'],
+			ref:"user"
 		},
 		postId: {
 			type: Schema.Types.ObjectId,
 			required: [true, 'Post ID is required'],
+			ref:"post"
 		},
 		text: {
 			type: String,

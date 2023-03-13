@@ -1,31 +1,15 @@
-// import express from 'express';
-// import {
-// 	createPost,
-//   getAllPosts,
-//   getPostsById,
-//   updatePostsById,
-// 	deletePostsById,
-	
-// } from '../controllers/postcontroller';
+import express, { Router } from "express";
+import { createPost, createComment, getPostComments, getOnePostComment, editOnePostComment, deletePostWithId, deleteCommentWithId } from "../controllers/postcontroller";
 
-// import { validationMiddleware } from '../middlewares/validate';
-// import {CommentSchemaType, createPostSchema, PostSchema } from '..validation/post';
-// //import { postSchema } from '..models/post';
-// //import { authenticate, checkIfIsAdmin } from '../middlewares/authenticate';
-// const router = express.Router();
+const router: Router = express.Router();
 
 
-// //ADMIN
-// router.post('/posts',  validationMiddleware(postSchema), createPost);
+router.post('/', createPost)
+router.put('/:id', deletePostWithId)
+router.post('/:postId/comments', createComment)
+router.get('/:postId/comments', getPostComments)
+router.get('/:postId/comments/:id', getOnePostComment)
+router.put('/:postId/comments/:id', editOnePostComment)
+router.delete('/:postId/comments/:id/users/:userId', deleteCommentWithId)
+export default router;
 
-// router.get('/posts',  getAllPosts);
-
-// router.get('/posts'/:postId,  getPostsById);
-
-
-// router.delete('/posts', authenticate, deletePostsById);
-
-// router.patch('/posts', authenticate, updatePostsById);
-
-
-// export default router;

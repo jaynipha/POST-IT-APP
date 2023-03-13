@@ -9,7 +9,6 @@ interface User {
 	isDeleted: boolean;
 	avatar: string
 }
-
 const UserSchema = new Schema<User>(
 	{
 		firstName: {
@@ -44,5 +43,5 @@ const UserSchema = new Schema<User>(
 	}
 );
 
-export const UserModel = model<User>('users', UserSchema);
+export const UserModel = model<User>('user', UserSchema);
 export { User }
