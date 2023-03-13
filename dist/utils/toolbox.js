@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = exports.checkToken = exports.comparePassword = exports.createToken = exports.hashPassword = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const hashPassword = (password) => {
     return bcrypt_1.default.hashSync(password, bcrypt_1.default.genSaltSync(10));
 };
