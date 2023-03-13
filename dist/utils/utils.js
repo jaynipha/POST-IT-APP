@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyToken = exports.checkToken = exports.createToken = exports.compare = exports.hashPassword = void 0;
+exports.generateRandomAvatar = exports.verifyToken = exports.checkToken = exports.createToken = exports.compare = exports.hashPassword = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 async function hashPassword(password) {
@@ -44,3 +44,54 @@ const verifyToken = (token, secret) => {
     }
 };
 exports.verifyToken = verifyToken;
+const avatarStyles = [
+    'adventurer',
+    'adventurer-neutral',
+    'avataaars',
+    'avataaars-neutral',
+    'big-ears',
+    'big-ears-neutral',
+    'big-smile',
+    'bottts',
+    'bottts-neutral',
+    'croodles',
+    'croodles-neutral',
+    'fun-emoji',
+    'icons',
+    'identicon',
+    'initials',
+    'lorelei',
+    'lorelei-neutral',
+    'micah',
+    'miniavs',
+    'open-peeps',
+    'personas',
+    'pixel-art',
+    'pixel-art-neutral',
+    'shapes',
+    'thumbs'
+];
+const getRandomAvatarStyle = (avatarStyles) => {
+    const randomIndex = Math.floor(Math.random() * avatarStyles.length);
+    return avatarStyles[randomIndex];
+};
+const generateRandomAvatar = async (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const _email = email.replace(/\s+/g, '');
+    const isValidEmail = emailRegex.test(_email);
+    if (!isValidEmail) {
+        throw new Error('Invalid email');
+    }
+    const entropySource = () => Math.random().toString(36).substring(2, 7);
+    const replaceAt = `-${entropySource()}-`;
+    const replaceDot = `-${entropySource()}-`;
+    const seed = _email.replace('@', replaceAt).split('.').join(replaceDot);
+    const randomAvatarStyle = getRandomAvatarStyle(avatarStyles);
+    if (!randomAvatarStyle || !avatarStyles.includes(randomAvatarStyle)) {
+        // console.error('Invalid avatar style') // log this error to the console
+        throw new Error('Something failed: ');
+    }
+    const avatarUrl = `https://api.dicebear.com/5.x/${randomAvatarStyle}/svg?seed=${seed}&size=200&radius=50`;
+    return avatarUrl;
+};
+exports.generateRandomAvatar = generateRandomAvatar;

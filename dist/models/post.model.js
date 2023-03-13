@@ -6,15 +6,17 @@ const PostSchema = new mongoose_1.Schema({
     userId: {
         type: mongoose_1.Schema.Types.ObjectId,
         required: [true, 'User ID is required'],
+        ref: "user"
     },
     text: {
         type: String,
     },
+    comments: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "comment" }],
     media: [{ url: String, mediaType: String }],
     isDeleted: {
         type: Boolean,
         default: false,
-    }
+    },
 }, {
     timestamps: true,
 });
