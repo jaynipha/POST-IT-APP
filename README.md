@@ -2,8 +2,10 @@
 
 # POST-IT-APP
 
+This is a psuedo social mwdia app that allows you to create, update and delete posts. you can also reply to comments and delete replies.
 THIS APP IS CONNECTED TO MONGODB ONLINE
-YOU NEED POSTMAN TO TEST IT OUT
+
+TESTING == POSTMAN
 
 > Simple demonstration of Creating , Reading, Updating and Deleting Api data from MongoDb
 
