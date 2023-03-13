@@ -145,10 +145,7 @@ export async function deleteCommentWithIdService(postId: string, id: string, use
 
         //SOFT DELETE - update is deleted to true.
       await Comment.findByIdAndUpdate(id, { isDeleted: true });
-     await  Post.findByIdAndUpdate(postId,{$pull:{comments:id}})
-      
-
-
+    
       
 
         return { data: `comment with id-${id} have been soft-deleted` }
