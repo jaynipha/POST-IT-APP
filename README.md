@@ -73,40 +73,4 @@ the deleted documents are still stored in the database, this is to keep track of
 it will be stored for a period of at least 5 years before they are permanently deleted. This is because of the privacy laws that govern social media all over the world
 ```
 
-### CREATE USER
 
-POST https://post-it-app-0ts8.onrender.com/users
-YOU DON'T NEED ANY AUTH FOR THIS. SIGN UP USING EMAIL, FIRSTNAME, LASTNAME, PASSWORD, ROLE AND
-
-### LOGIN USER
-
-POST https://post-it-app-0ts8.onrender.com/users/login
-USE EMAIL AND PASSWORD TO LOGIN. COPY BEARER TOKEN AND PASTE IN AUTH OR HEADER
-
-### GET ONE USER
-
-GET https://post-it-app-0ts8.onrender.com/users/@userId
-USE THE USER ID THAT WAS GENERATED AFTER YOU LOGGED IN.
-
-### GET ALL USERS
-
-GET https://post-it-app-0ts8.onrender.com/users
-USE ONLY THIS TO GET ALL USERS IN THE DATABASE
-
-### EDIT USER BY ID
-
-PUT https://post-it-app-0ts8.onrender.com/users/@userId
-
-EDIT USER BY ID
-PUT IN USER ID TO DO THIS
-
-### DELETE USER
-
-DELETE Dhttps://post-it-app-0ts8.onrender.com/users/@userId
-PUT IN USER ID TO DO THIS
-
-### CREATE POST
-
-https://post-it-app-0ts8.onrender.com/posts
-
-USE 'TEXT" AND "USERID"
