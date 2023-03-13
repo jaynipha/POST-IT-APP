@@ -1,4 +1,5 @@
 import { Response, Request, NextFunction } from "express";
+import { Schema,Types } from "mongoose";
 import {
     createPostService,
     createCommentService,
@@ -64,7 +65,7 @@ export async function editOnePostComment(req: Request, res: Response, next: Next
 }
 
 export async function deletePostWithId(req: Request, res: Response, next: NextFunction) {
-    try {
+  try {
         const { data } = await deletePostWithIdService(req.params.id, req.params.id);
         return res.status(200).send({ status: true, data });
 
@@ -73,7 +74,8 @@ export async function deletePostWithId(req: Request, res: Response, next: NextFu
     }
 }
 export async function deleteCommentWithId(req: Request, res: Response, next: NextFunction) {
-    try {
+  try {
+      
         const { data } = await deleteCommentWithIdService(req.params.postId, req.params.id, req.params.userId);
         return res.status(200).send({ status: true, data });
 

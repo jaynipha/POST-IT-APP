@@ -98,9 +98,11 @@ export async function editOnePostCommentService(postId: string, commentId: strin
 }
 
 export async function deletePostWithIdService(postId: string, id: string,) {
-    try {
+  try {
+      console.log("hello")
         //first, check if post exists and throw error if not available
-        const checkExistingPost = await Post.findOne({ _id: postId });
+      const checkExistingPost = await Post.findOne({ _id: postId });
+      
 
         if (!checkExistingPost || checkExistingPost.isDeleted !== false) {
             throw new AppError(400, "Post Not Available")
@@ -124,10 +126,13 @@ export async function deletePostWithIdService(postId: string, id: string,) {
     }
 }
 
-export async function deleteCommentWithIdService(postId: string, id: string, userId: string) {
-    try {
+export async function deleteCommentWithIdService(postId: any, id: string, userId: string) {
+  try {
+      console.log(postId)
+      
         //first, check if post exists and throw error if not available
-        const checkExistingPost = await Post.findOne({ _id: postId });
+      const checkExistingPost = await Post.findById(postId);
+      console.log(checkExistingPost)
 
         if (!checkExistingPost || checkExistingPost.isDeleted !== false) {
             throw new AppError(400, "Post Not Available")
