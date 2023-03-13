@@ -1,32 +1,19 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const Usercontroller_1 = require("../controllers/Usercontroller");
 const router = express_1.default.Router();
-const User = __importStar(require("../controllers/Usercontroller"));
-router.post('/api/v1/create/users', User.createUser);
+router.get('/', Usercontroller_1.getUsers);
+router.post('/', Usercontroller_1.createUser);
+router.post('/login', Usercontroller_1.login);
+router.get('/:id', Usercontroller_1.getUserById);
+router.put('/:id', Usercontroller_1.updateUser);
+router.delete('/:id', Usercontroller_1.deleteUser);
+router.get('/:userId/posts', Usercontroller_1.fetchAllUserSpecificPosts);
+router.get('/:userId/posts/:postId', Usercontroller_1.getUserSpecificPost);
+router.get('/:userId/posts/:postId/comments', Usercontroller_1.getUserSpecificPostComments);
+router.get('/:userId/posts/:postId/comments/:id', Usercontroller_1.getUserSpecificPostComment);
+exports.default = router;

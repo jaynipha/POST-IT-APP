@@ -6,14 +6,16 @@ const commentSchema = new mongoose_1.Schema({
     userId: {
         type: mongoose_1.Schema.Types.ObjectId,
         required: [true, 'User ID is required'],
+        ref: "user"
     },
     postId: {
         type: mongoose_1.Schema.Types.ObjectId,
         required: [true, 'Post ID is required'],
+        ref: "post"
     },
     text: {
         type: String,
-        required: [true, 'roomType must be a valid ObjectId'],
+        required: [true, 'reply must be a valid ObjectId'],
     },
     media: {
         type: [],

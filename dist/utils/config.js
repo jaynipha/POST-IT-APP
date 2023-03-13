@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const config = {
+    cloudinaryApiKey: "92333915436378",
+    cloudName: "dxttpfpnm",
+    cloudinarySecret: "VUe9O-_qtEt6qfoK3ZcKWgly7cc",
+    sessionSecet: "!!!!!qwertyuio??13456"
+};
+exports.default = config;
