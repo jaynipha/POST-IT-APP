@@ -93,6 +93,7 @@ async function editOnePostCommentService(postId, commentId, data) {
 exports.editOnePostCommentService = editOnePostCommentService;
 async function deletePostWithIdService(postId, id) {
     try {
+        console.log("hello");
         //first, check if post exists and throw error if not available
         const checkExistingPost = await post_model_1.Post.findOne({ _id: postId });
         if (!checkExistingPost || checkExistingPost.isDeleted !== false) {
@@ -115,8 +116,10 @@ async function deletePostWithIdService(postId, id) {
 exports.deletePostWithIdService = deletePostWithIdService;
 async function deleteCommentWithIdService(postId, id, userId) {
     try {
+        console.log(postId);
         //first, check if post exists and throw error if not available
-        const checkExistingPost = await post_model_1.Post.findOne({ _id: postId });
+        const checkExistingPost = await post_model_1.Post.findById(postId);
+        console.log(checkExistingPost);
         if (!checkExistingPost || checkExistingPost.isDeleted !== false) {
             throw new errorhandler_1.AppError(400, "Post Not Available");
         }
@@ -130,7 +133,6 @@ async function deleteCommentWithIdService(postId, id, userId) {
         //   }
         //SOFT DELETE - update is deleted to true.
         await comment_model_1.Comment.findByIdAndUpdate(id, { isDeleted: true });
-        await post_model_1.Post.findByIdAndUpdate(postId, { $pull: { comments: id } });
         return { data: `comment with id-${id} have been soft-deleted` };
     }
     catch (error) {
